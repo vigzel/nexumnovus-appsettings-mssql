@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Build">
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <Product>NexumNovus.AppSettings.MsSql</Product>
+    <Description>This package enables you to load and persist settings into MsSql database, and encrypt/decrypt settings marked with SecretSetting attribute.</Description>
+    <PackageTags>nexumnovus;appsettings</PackageTags>
+  </PropertyGroup>
+
+</Project>
