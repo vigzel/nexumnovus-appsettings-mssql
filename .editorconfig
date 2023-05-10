@@ -15,7 +15,7 @@ root = true
 [*]
 charset = utf-8
 indent_style = space
-indent_size = 4
+indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
 
@@ -421,6 +421,41 @@ dotnet_naming_rule.parameters_rule.severity             = warning
 # Justification: Comments turned off
 # https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1633.md
 dotnet_diagnostic.SA1633.severity = none
+# Prefix local calls with this
+# Justification: Personal preference
+dotnet_diagnostic.SA1101.severity = none
+dotnet_diagnostic.IDE0009.severity = none
+# A field name in C# begins with an underscore.
+# Justification: Personal preference
+dotnet_diagnostic.SA1309.severity = none
+dotnet_diagnostic.IDE1006.severity = none
+dotnet_diagnostic.SA1313.severity = none
+# do not use #region
+# Justification: Personal preference
+dotnet_diagnostic.SA1124.severity = none
+# public members should come before private menbers
+# Justification: I prefer IDisposable to be at the bottom of the class
+dotnet_diagnostic.SA1202.severity = none
+# For improved performance, use the LoggerMessage delegates instead ...
+# Justification: Too verbose
+dotnet_diagnostic.CA1848.severity = none
+# The logging message template should not vary between calls to ...
+# Justification: Too verbose
+dotnet_diagnostic.CA2254.severity = none
+# A constructor should not follow a property
+dotnet_diagnostic.SA1201.severity = none
+# Readonly fields should appear before non-readonly fields
+dotnet_diagnostic.SA1214.severity = none
+# The behavior of 'int.ToString()' could vary based on the current user's locale settings. 
+dotnet_diagnostic.CA1305.severity = none
+# The behavior of 'string.EndsWith(string)' could vary based on the current user's locale settings.
+dotnet_diagnostic.CA1310.severity = none
+# Debug.Assert should provide message text
+dotnet_diagnostic.SA1405.severity = none
+
+
+
+
 
 ##########################################
 # License
