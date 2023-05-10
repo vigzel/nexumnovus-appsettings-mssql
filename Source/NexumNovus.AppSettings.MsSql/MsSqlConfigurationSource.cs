@@ -1,3 +1,5 @@
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NexumNovus.AppSettings.MsSql.Test")]
+
 namespace NexumNovus.AppSettings.MsSql;
 
 using Microsoft.Extensions.Configuration;
@@ -28,7 +30,7 @@ public class MsSqlConfigurationSource : NexumDbConfigurationSource
   /// MAX length for indexed varchar column is 450 so I can't put PK on Key column
   internal string CreateTableCommand => @$"IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='{TableName}' and xtype='U')
                                             CREATE TABLE {TableName} (
-                                              [Key] nvarchar(max) NOT NULL COLLATE Latin1_General_100_CI_AS,
+                                              [Key] nvarchar(max) COLLATE Latin1_General_100_CI_AS NOT NULL,
                                               [Value] nvarchar(max) NULL,
                                               [LastUpdateDt] datetime NOT NULL
                                             );";

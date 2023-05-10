@@ -8,4 +8,10 @@
     <ProjectReference Include="..\..\Source\NexumNovus.AppSettings.MsSql\NexumNovus.AppSettings.MsSql.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="FluentAssertions" />
+    <Using Include="Moq" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+
 </Project>
