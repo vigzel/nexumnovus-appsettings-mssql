@@ -30,23 +30,31 @@ using Microsoft.Extensions.Options;
 using NexumNovus.AppSettings.Common;
 using NexumNovus.AppSettings.Common.Secure;
 using NexumNovus.AppSettings.MsSql;
+
 var builder = WebApplication.CreateBuilder(args);
+
 // Load settings from MsSql database and register settings repository with service collection
 builder.Host.AddMsSqlConfig("Data Source=.;Initial Catalog=NexumNovus;Integrated Security=true;");
+
 // Use of options pattern to register configuration elements is optional.
 builder.Services.AddOptions<EmailSettings>().BindConfiguration(EmailSettings.ConfigElement);
+
 var app = builder.Build();
+
 // Api's to get and update EmailSettings
 app.MapGet("/emailSettings", (IOptionsMonitor<EmailSettings> emailSettings) => emailSettings.CurrentValue);
 app.MapPost("/emailSettings", async (EmailSettings emailSettings, ISettingsRepository settingsRepo)
   => await settingsRepo.UpdateSettingsAsync(EmailSettings.ConfigElement, emailSettings)
 );
+
 // Api's to get and update a setting
 app.MapGet("/settings", (string section, IConfiguration settings) => settings.GetSection(section));
 app.MapPost("/settings", async (string section, string value, ISettingsRepository settingsRepo)
   => await settingsRepo.UpdateSettingsAsync(section, value)
 );
+
 app.Run();
+
 public record EmailSettings
 {
   public static string ConfigElement = "Email";
