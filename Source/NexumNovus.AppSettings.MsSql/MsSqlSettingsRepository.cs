@@ -1,6 +1,7 @@
 namespace NexumNovus.AppSettings.MsSql;
 
 using System.Data;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using NexumNovus.AppSettings.Common;
 using NexumNovus.AppSettings.Common.Secure;
@@ -57,8 +58,7 @@ public class MsSqlSettingsRepository : ISettingsRepository
         }
       }
 
-      var keysToAdd = flatSettings.Keys
-        .Where(x => !keysToUpdate.Contains(x, StringComparer.OrdinalIgnoreCase) && !keysToDelete.Contains(x, StringComparer.OrdinalIgnoreCase));
+      var keysToAdd = flatSettings.Keys.Where(x => !dbSettings.ContainsKey(x));
 
       if (!keysToAdd.Any() && !keysToUpdate.Any() && !keysToDelete.Any())
       {
