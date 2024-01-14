@@ -40,10 +40,7 @@ public static class MsSqlHostBuilderExtensions
   /// <returns>The <see cref="IConfigurationBuilder"/>.</returns>
   public static IHostBuilder UseMsSqlConfig(this IHostBuilder builder, Action<MsSqlConfigurationSource> configureSource)
   {
-    if (builder == null)
-    {
-      throw new ArgumentNullException(nameof(builder));
-    }
+    ArgumentNullException.ThrowIfNull(builder);
 
     var source = new MsSqlConfigurationSource();
     configureSource?.Invoke(source);

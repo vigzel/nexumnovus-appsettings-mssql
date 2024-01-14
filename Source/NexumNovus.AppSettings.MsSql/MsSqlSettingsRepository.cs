@@ -45,9 +45,9 @@ public class MsSqlSettingsRepository : ISettingsRepository
       var dbSettings = await GetAsync(connection, name).ConfigureAwait(false);
       foreach (var key in dbSettings.Keys)
       {
-        if (flatSettings.ContainsKey(key))
+        if (flatSettings.TryGetValue(key, out var flatSettingsValue))
         {
-          if (dbSettings[key] != flatSettings[key])
+          if (dbSettings[key] != flatSettingsValue)
           {
             keysToUpdate.Add(key);
           }
@@ -60,7 +60,7 @@ public class MsSqlSettingsRepository : ISettingsRepository
 
       var keysToAdd = flatSettings.Keys.Where(x => !dbSettings.ContainsKey(x));
 
-      if (!keysToAdd.Any() && !keysToUpdate.Any() && !keysToDelete.Any())
+      if (!keysToAdd.Any() && keysToUpdate.Count == 0 && keysToDelete.Count == 0)
       {
         return;
       }
@@ -109,7 +109,7 @@ public class MsSqlSettingsRepository : ISettingsRepository
           var value = await reader.IsDBNullAsync(1).ConfigureAwait(false)
             ? null
             : reader.GetString(1);
-          value = key.EndsWith("*") ? Unprotect(value) : value;
+          value = key.EndsWith('*') ? Unprotect(value) : value;
           settings.Add(key, value);
         }
       }
@@ -135,7 +135,7 @@ public class MsSqlSettingsRepository : ISettingsRepository
 
       foreach (var key in keys)
       {
-        object? value = key.EndsWith("*") ? Protect(settings[key]) : settings[key];
+        object? value = key.EndsWith('*') ? Protect(settings[key]) : settings[key];
 
         command.Parameters["@key"].Value = key;
         command.Parameters["@value"].Value = value ?? DBNull.Value;

@@ -40,3 +40,6 @@ dotnet_diagnostic.CA1062.severity = none
 dotnet_diagnostic.CA1707.severity = none
 # Don't want to be forced to prefix all json strings with /*lang=json*/
 dotnet_diagnostic.JSON002.severity = none
+
+# CA1861: Avoid constant arrays as arguments
+dotnet_diagnostic.CA1861.severity = none
