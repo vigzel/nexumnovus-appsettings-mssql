@@ -1,4 +1,4 @@
-namespace NexumNovus.AppSettings.Json.Test;
+namespace NexumNovus.AppSettings.MsSql.Test;
 
 using System.Data;
 using Microsoft.Data.SqlClient;

@@ -1,4 +1,4 @@
-namespace NexumNovus.AppSettings.Json.Test;
+namespace NexumNovus.AppSettings.MsSql.Test;
 
 using NexumNovus.AppSettings.Common.Secure;
 using NexumNovus.AppSettings.MsSql;
@@ -41,7 +41,7 @@ public class MsSqlSettingsRepository_Tests
     _dbHelperUtils.SeedDb(initialSettings);
 
     // Act
-    await _sut.UpdateSettingsAsync("name", "New Name").ConfigureAwait(false); // key should be case-insensitive
+    await _sut.UpdateSettingsAsync("name", "New Name"); // key should be case-insensitive
 
     // Assert
     var result = _dbHelperUtils.GetAllDbSettings();
@@ -61,7 +61,7 @@ public class MsSqlSettingsRepository_Tests
     _dbHelperUtils.SeedDb(initialSettings);
 
     // Act
-    await _sut.UpdateSettingsAsync("Surname", "New Surname").ConfigureAwait(false);
+    await _sut.UpdateSettingsAsync("Surname", "New Surname");
 
     // Assert
     var result = _dbHelperUtils.GetAllDbSettings();
@@ -85,7 +85,7 @@ public class MsSqlSettingsRepository_Tests
     {
       Name = "demo",
       Password = "demo",
-    }).ConfigureAwait(false);
+    });
 
     // Assert
     var result = _dbHelperUtils.GetAllDbSettings();
@@ -116,7 +116,7 @@ public class MsSqlSettingsRepository_Tests
         { "A", 1 },
         { "B", 2 },
       },
-    }).ConfigureAwait(false);
+    });
 
     // Assert
     var result = _dbHelperUtils.GetAllDbSettings();

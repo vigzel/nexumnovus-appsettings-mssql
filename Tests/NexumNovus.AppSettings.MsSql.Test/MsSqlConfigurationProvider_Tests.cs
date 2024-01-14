@@ -1,4 +1,4 @@
-namespace NexumNovus.AppSettings.Json.Test;
+namespace NexumNovus.AppSettings.MsSql.Test;
 
 using NexumNovus.AppSettings.Common.Secure;
 using NexumNovus.AppSettings.MsSql;

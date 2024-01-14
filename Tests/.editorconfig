@@ -43,3 +43,6 @@ dotnet_diagnostic.JSON002.severity = none
 
 # CA1861: Avoid constant arrays as arguments
 dotnet_diagnostic.CA1861.severity = none
+
+#VSTHRD111: Use ConfigureAwait(bool)
+dotnet_diagnostic.VSTHRD111.severity = none
